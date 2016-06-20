@@ -6,9 +6,7 @@ import java.io.FileInputStream;
 import java.security.KeyStore;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation.Builder;
@@ -109,12 +107,7 @@ public class JerseyNewTest {
 
 		
 		ClientBuilder builder = ClientBuilder.newBuilder();
-    	builder.sslContext(sslContext).hostnameVerifier(new HostnameVerifier() {
-			@Override
-			public boolean verify(String hostname, SSLSession session) {
-				return true;
-			}
-		});
+    	builder.sslContext(sslContext);
     	
     	Client client = builder.build();
     	client.register(JacksonJsonProvider.class);
