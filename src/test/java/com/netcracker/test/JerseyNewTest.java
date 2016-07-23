@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.security.KeyStore;
 import java.util.stream.IntStream;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -33,6 +34,8 @@ public class JerseyNewTest {
 
 	@Test
 	public void testMultipleRequestWithParallelStream() {
+//		if this is uncommented, everything looks good!
+//		HttpsURLConnection.getDefaultSSLSocketFactory();
 		IntStream.range(0, 10)
 			.parallel() // if this is commented, everything looks good!
 			.mapToObj(i -> constructClient(trustStore).target(URL))
